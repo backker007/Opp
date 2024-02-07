@@ -1,6 +1,6 @@
 package Lab4;
 
-public class Main {
+public class Breeding {
 
   public static void main(String[] args) throws InterruptedException {
     Mynabird F = new Mynabird();
