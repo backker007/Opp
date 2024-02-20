@@ -1,54 +1,52 @@
-package Lab6;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lab6;
 
- public class Figure  {
-    public Figure(String name, String bang, int lc1, int lc2) {
-        Name = name;
-        Bang = bang;
-        Lc1 = lc1;
-        Lc2 = lc2;
+/**
+ *
+ * @author Anuphong_PC
+ */
+ abstract public  class Figure {
+    String Name;
+    String Bang;
+    int lc1,lc2;
+
+    public Figure(String Name, String Bang, int lc1, int lc2) {
+        this.Name = Name;
+        this.Bang = Bang;
+        this.lc1 = lc1;
+        this.lc2 = lc2;
     }
 
-    String Name;
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public void setLc1(int lc1) {
+        this.lc1 = lc1;
+    }
+
+    public void setLc2(int lc2) {
+        this.lc2 = lc2;
+    }
 
     public String getName() {
         return Name;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
-
-    String Bang;
-
     public String getBang() {
         return Bang;
     }
 
-    // public void setBang(String bang) {
-    // Bang = bang;
-    // }
-
-    int Lc1, Lc2;
-
     public int getLc1() {
-        return Lc1;
+        return lc1;
     }
-
-    // public void setLc1(int lc1) {
-    // Lc1 = lc1;
-    // }
 
     public int getLc2() {
-        return Lc2;
+        return lc2;
     }
-
-    // public void setLc2(int lc2) {
-    // Lc2 = lc2;
-    // }
-   
-
-    void FreeMove(Figure board) {
-            
-    }
-
+         
 }
