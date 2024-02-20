@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lab6;
+package Lab6;
 
 /**
  *
@@ -21,6 +21,9 @@ package lab6;
         this.lc2 = lc2;
     }
 
+    public void setBang(String bang){
+        this.Bang = bang;
+    }
     public void setName(String Name) {
         this.Name = Name;
     }

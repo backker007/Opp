@@ -8,8 +8,12 @@ public class Chessgame {
         Board brd = new Board ();
         brd.SetBoard();
         brd.display();
-        brd.FreeMove("Pawn1" , "W",2,3);
-        
+        brd.FreeMove("Pawn1" , "W",5,3);
+        brd.FreeMove("Pawn1" , "W",1,4);
+        brd.FreeMove("Pawn1" , "W",3,1);
+        brd.FreeMove("Pawn1" , "B",4,1);
+        brd.FreeMove("Pawn1" , "W",4,1);
+        brd.FreeMove("Pawn2" , "W",4,1);
     }
     
 }
