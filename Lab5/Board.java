@@ -9,7 +9,7 @@ public class Board {
         board[1] = new Pawn("Pawn2");
         board[2] = new Pawn(" xxx ");
         board[3] = new Pawn(" xxx ");
-        board[4] = new Figure(" xxx ");
+        board[4] = new Pawn(" xxx ");
         board[5] = new Figure(" xxx ");
         board[6] = new Figure(" xxx ");
         board[7] = new Figure(" xxx ");

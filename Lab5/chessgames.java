@@ -7,7 +7,7 @@ public class chessgames {
          brd.Setstart();
          brd.Display();
          
-         brd.Move("Pawn2" , 6);
+        brd.Move("Pawn2" , 6);
         brd.Move("Pawn2" , 2);
         brd.Move("Pawn1" , 3);
         brd.Move("Pawn1" , 4);
