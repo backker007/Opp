@@ -1,24 +1,41 @@
 package Lab7;
 
-public class Pawn {
+public class Pawn extends Figure {
+
+
    
-    public void Pawn(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
-        
+
+    public Pawn(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
+        super(Name, iswhite, CurrentPositionRow, CurrentPositionCol);
+        //TODO Auto-generated constructor stub
     }
 
+
+
     @Override
-    void MoveFigure(Board board, Board boardtarget ,int targetRow , int targetCol) {
-      if((targetRow == 1)|| (targetCol == 1)){
+    void MoveFigure(Board board,int targetRow, int targetCol) {
+       
+        
+            String sum ; 
+            sum = this.movableList.get(0);
+            System.out.println(sum);
+            System.out.println(sum);
+            System.out.println(sum);
+            System.out.println(sum);
+            System.out.println(sum);
+            System.out.println(sum);
           
-      if(this.iswhite != ){
-          
-      }else if (this.iswhite == false){
-      
-      }
-      }else{
-      System.out.println("Command : Move figure is not move !!!");
-      }
+            // if(){
+                
+            // }else if (this.iswhite == false){
+            
+            // }
+            // }else{
+            // System.out.println("Command : Move figure is not move !!!");
+            // }
+    
     }
+
 
     @Override
     void FreeMove(Board brd, int targetPositionRow, int targetPositionCol) {

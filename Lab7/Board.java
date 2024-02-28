@@ -71,7 +71,7 @@ public class Board {
                 if (board[i][j] == null) {
                     continue;
                 } else if ((board[i][j].Name == Name) && (board[i][j].iswhite == iswhite)) {
-                    board[i][j].MoveFigure(this, targetRow, targetCol);
+                    board[i][j].FreeMove(this, targetRow, targetCol);                                         
                     found = true;
                     break s1;
                 }
@@ -79,7 +79,7 @@ public class Board {
             }
         }
         if (found == false) {
-            System.out.printf("There is no figure named as %s in the board!!! , Command abort \n\n", name);
+            System.out.printf("There is no figure named as %s in the board!!! , Command abort \n\n", Name);
         }
     }
 

@@ -65,7 +65,8 @@ public class Figure {
         }
     }
 
-    void MoveFigure(Board board, Class brd , int targetRow , int targetCol) {
+    void MoveFigure(Board board , int targetRow , int targetCol) {
+        System.out.println("sdfsdfdsfsdf");
     }
 
    
