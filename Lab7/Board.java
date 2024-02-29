@@ -64,14 +64,23 @@ public class Board {
     }
 
     void MoveFigure(String Name, boolean iswhite, int targetRow, int targetCol) {
-        System.out.printf("Command : Move figure  %s  to Row %d Column %d \n", Name, targetRow, targetCol);
+
+        String x;
+        if (iswhite == true )
+        {
+             x =  "W";
+        }else{
+             x = "B";
+        }
+        System.out.printf("Command : Move figure  %s%s  to Row %d Column %d \n",x,Name, targetRow, targetCol);
         boolean found = false;
         s1: for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == null) {
                     continue;
                 } else if ((board[i][j].Name == Name) && (board[i][j].iswhite == iswhite)) {
-                    board[i][j].FreeMove(this, targetRow, targetCol);                                         
+                    board[i][j].MoveFigure(this, targetRow, targetCol);  
+                    board[i][j] = null;                                          
                     found = true;
                     break s1;
                 }

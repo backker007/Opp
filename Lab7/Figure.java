@@ -3,7 +3,7 @@ package Lab7;
 import java.util.ArrayList;
 
 public class Figure {
-    
+
     String Name = "";
     boolean iswhite = true;
     int CurrentPositionRow = 0;
@@ -33,14 +33,19 @@ public class Figure {
         if ((targetPositionRow < 1) || (targetPositionRow > brd.board.length)) {
             if ((targetPositionCol < 1) || (targetPositionRow > brd.board.length)) {
                 System.out.println("The speicified destination is out of range , Command abort!!! \n");
-
             }
+        } else if ((brd.board[targetPositionRow - 1][targetPositionCol - 1] != null)
+                && (brd.board[targetPositionRow - 1][targetPositionCol - 1].iswhite == this.iswhite)) {
+            System.out.printf("The destination is being occupied by the same-side figure %s , Command abort!!!\n",
+                    this.Name);
+        } else if ((brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1].CurrentPositionRow == targetPositionRow)
+                && (brd.board[CurrentPositionRow - 1][CurrentPositionCol    - 1].CurrentPositionCol == targetPositionCol)) {
+                    System.out.println("Command : Can not move it!!!");
+        }
 
-        } else if ((brd.board[targetPositionRow - 1][targetPositionCol - 1] != null) && (brd.board[targetPositionRow - 1][targetPositionCol - 1].iswhite == this.iswhite)) {
-            System.out.printf("The destination is being occupied by the same-side figure %s , Command abort!!!\n", this.Name);
-        } else {
-            brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1] = null;
+        else {
             brd.board[targetPositionRow - 1][targetPositionCol - 1] = this;
+            brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1] = null;
             brd.board[targetPositionRow - 1][targetPositionCol - 1].CurrentPositionRow = targetPositionRow;
             brd.board[targetPositionRow - 1][targetPositionCol - 1].CurrentPositionCol = targetPositionCol;
 
@@ -51,7 +56,7 @@ public class Figure {
     void updateMovableList(Board board) {
 
         this.movableList.clear();
-        char sum[] = {'[', 'i', ',', 'j', ']'};
+        char sum[] = { '[', 'i', ',', 'j', ']' };
         for (int i = 0; i < board.board.length; i++) {
             for (int j = 0; j < board.board[i].length; j++) {
                 if ((board.board[i][j] == null) || (board.board[i][j].iswhite != this.iswhite)) {
@@ -65,9 +70,9 @@ public class Figure {
         }
     }
 
-    void MoveFigure(Board board , int targetRow , int targetCol) {
+    void MoveFigure(Board brd, int targetRow, int targetCol) {
         System.out.println("sdfsdfdsfsdf");
+
     }
 
-   
 }
