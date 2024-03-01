@@ -8,14 +8,13 @@ public class Figure {
     boolean iswhite = true;
     int CurrentPositionRow = 0;
     int CurrentPositionCol = 0;
-    ArrayList<String> movableList = new ArrayList();
+    ArrayList<String> movableList = new ArrayList<>();
 
     public Figure(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
         this.Name = Name;
         this.iswhite = iswhite;
         this.CurrentPositionRow = CurrentPositionRow;
         this.CurrentPositionCol = CurrentPositionCol;
-        ArrayList<String> MovableList = new ArrayList<String>();
     }
 
     String getiswhite(boolean iswhite) {

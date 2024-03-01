@@ -1,14 +1,16 @@
 package Lab7;
 
+
 import java.util.ArrayList;
 
 public class Bishop extends Figure {
 
-    private ArrayList<String> Intdexofcanmove = new ArrayList<>();
+    ArrayList<String> Intdexofcanmove = new ArrayList<>() ;
+    
 
     public Bishop(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
         super(Name, iswhite, CurrentPositionRow, CurrentPositionCol);
-        // TODO Auto-generated constructor stub
+        //TODO Auto-generated constructor stub
     }
 
     @Override
@@ -51,8 +53,7 @@ public class Bishop extends Figure {
                     iscollect = true;
                 }
                 if (iscollect == true) {
-
-                    String position = "[" + i + "," + j + "]";
+                    String position = "[" + Integer.toString(i) + "," + Integer.toString(j) + "]";
                     this.Intdexofcanmove.add(position);
                 }
             }

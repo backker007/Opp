@@ -14,6 +14,8 @@ public class Pawn extends Figure {
         sum = this.movableList.get(0);
         int IndexPositionsRow = Integer.valueOf(sum.substring(1, 2));
         int IndexPositionsCol = Integer.valueOf(sum.substring(3, 4));
+        System.out.println(IndexPositionsRow + "" + IndexPositionsCol);
+        System.out.println(targetRow + " " + targetCol);
         if ((IndexPositionsRow == targetRow) && (IndexPositionsCol == targetCol)) {
             if ((brd.board[targetRow - 1][targetCol - 1] != null)
                     && (this.iswhite == brd.board[targetRow - 1][targetCol - 1].iswhite)) {
@@ -41,27 +43,31 @@ public class Pawn extends Figure {
 
     @Override
     void updateMovableList(Board board) {
-        int R , C;
+      
         this.movableList.clear();
         char sum[] = { '[', 'i', ',', 'j', ']' };
         if (this.Name.substring(0, 2).endsWith("Pa")) {
             if (this.iswhite == true) {
-                sum[1] = ((char) (this.CurrentPositionRow + 49));
-                sum[3] = ((char) (this.CurrentPositionCol + 48));
-
+                if ((sum[1] < board.board.length) && (sum[1] > 1)) {
+                    sum[1] = ((char) (this.CurrentPositionRow + 49));
+                    sum[3] = ((char) (this.CurrentPositionCol + 48));
+                } else {
+                    System.out.println("The speicified destination is out of range , Command abort!!! \n");
+                }
             } else {
-                sum[1] = ((char) (this.CurrentPositionRow + 47));
-                sum[3] = ((char) (this.CurrentPositionCol + 48));
+                if ((sum[1] > 1) && (sum[1] < board.board.length)) {
+                    sum[1] = ((char) (this.CurrentPositionRow + 47));
+                    sum[3] = ((char) (this.CurrentPositionCol + 48));
+                } else {
+                    System.out.println("The speicified destination is out of range , Command abort!!! \n");
+                }
             }
-
-        } else {
-
-        }
-            String Str = String.valueOf(sum);
-            this.movableList.add(Str);
-        }
-       
-
+            String str = "[" + sum[1] + "," + sum[3] + "]";
+            this.movableList.add(str);
+        } 
     }
 
+    
 }
+
+
