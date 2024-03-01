@@ -14,8 +14,6 @@ public class Pawn extends Figure {
         sum = this.movableList.get(0);
         int IndexPositionsRow = Integer.valueOf(sum.substring(1, 2));
         int IndexPositionsCol = Integer.valueOf(sum.substring(3, 4));
-        System.out.println(IndexPositionsRow + "" + IndexPositionsCol);
-        System.out.println(targetRow + " " + targetCol);
         if ((IndexPositionsRow == targetRow) && (IndexPositionsCol == targetCol)) {
             if ((brd.board[targetRow - 1][targetCol - 1] != null)
                     && (this.iswhite == brd.board[targetRow - 1][targetCol - 1].iswhite)) {
@@ -43,31 +41,32 @@ public class Pawn extends Figure {
 
     @Override
     void updateMovableList(Board board) {
-
+        int R , C;
         this.movableList.clear();
         char sum[] = { '[', 'i', ',', 'j', ']' };
         if (this.Name.substring(0, 2).endsWith("Pa")) {
             if (this.iswhite == true) {
-                if ((sum[1] < 9) && (sum[1] > 1)) {
-                    sum[1] = ((char) (this.CurrentPositionRow + 49));
-                    sum[3] = ((char) (this.CurrentPositionCol + 48));
-                } else {
-                    System.out.println("The speicified destination is out of range , Command abort!!! \n");
-                }
+                sum[1] = ((char) (this.CurrentPositionRow + 49));
+                sum[3] = ((char) (this.CurrentPositionCol + 48));
+
             } else {
-                if ((sum[1] > 1) && (sum[1] < 9)) {
-                    sum[1] = ((char) (this.CurrentPositionRow + 47));
-                    sum[3] = ((char) (this.CurrentPositionCol + 48));
-                } else {
-                    System.out.println("The speicified destination is out of range , Command abort!!! \n");
-                }
+                sum[1] = ((char) (this.CurrentPositionRow + 47));
+                sum[3] = ((char) (this.CurrentPositionCol + 48));
             }
 
         } else {
 
         }
-        String Str = String.valueOf(sum);
-        this.movableList.add(Str);
+        R = Integer.parseInt(String.valueOf(sum[1]));
+        C = Integer.parseInt(String.valueOf(sum[3]));
+
+        if(((C > board.board.length) || (C < 1)) || ((R > board.board.length) || (R < 1))){
+        }
+        else{
+            String Str = String.valueOf(sum);
+            this.movableList.add(Str);
+        }
+       
 
     }
 

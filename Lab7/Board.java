@@ -8,8 +8,9 @@ public class Board {
     void boardInitiate() {
         board[0][0] = new Pawn("Pa1", true, 1, 1);
         board[0][1] = new Pawn("Pa2", true, 1, 2);
-        board[7][1] = new Pawn("Pa2", false, 8, 1);
-        board[0][2] = new Bishop("Bi1", true, 1, 3);
+        board[7][1] = new Pawn("Pa2", false, 8, 2);
+        board[0][2] = new Bishop("Bi1", true, 1, 3); 
+        board[7][2] = new Bishop("Bi1", false, 8, 3); 
     }
 
     void Display() {
@@ -64,7 +65,6 @@ public class Board {
     }
 
     void MoveFigure(String Name, boolean iswhite, int targetRow, int targetCol) {
-
         String x;
         if (iswhite == true )
         {
@@ -84,12 +84,51 @@ public class Board {
                     found = true;
                     break s1;
                 }
-
             }
         }
         if (found == false) {
             System.out.printf("There is no figure named as %s in the board!!! , Command abort \n\n", Name);
         }
     }
+
+    void updateMovableList(Bishop bishop) {
+            bishop.movableList.clear();
+            boolean isCanmove = false;
+            char sum[] = { '[', 'i', ',', 'j', ']' };
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board.length; j++) {
+                    if ((board[i][j] != null) && (board[i][j].iswhite == bishop.iswhite)) {
+                        isCanmove = false;
+                        continue;
+                    } else {
+                        int rowDiff = Math.abs(i - bishop.CurrentPositionRow);
+                        int colDiff = Math.abs(j - bishop.CurrentPositionCol);
+                        if    (rowDiff != colDiff) {
+                            isCanmove = false;
+                            continue;
+                        }
+                        int rowDir = (i - bishop.CurrentPositionRow) / rowDiff;
+                        int colDir = (j - bishop.CurrentPositionCol) / colDiff;
+                        int currRow = bishop.CurrentPositionRow + rowDir;
+                        int currCol = bishop.CurrentPositionCol + colDir;
+                        while ((currRow != i) || (currCol != j)) {
+                            if (board[i][j] != null) {
+                                isCanmove = false;
+                                continue;
+                            }
+                            currRow += rowDir;
+                            currCol += colDir;
+                        }
+                        isCanmove = true;
+                        if (isCanmove == true) {
+                            sum[1] = (char) (i + 48);
+                            sum[3] = (char) (j + 48);
+                            String Str = String.valueOf(sum);
+                            bishop.movableList.add(Str);
+                        }
+                    }
+                }
+            }
+        }
 
 }
