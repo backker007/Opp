@@ -57,12 +57,6 @@ public class Pawn extends Figure {
         } else {
 
         }
-        R = Integer.parseInt(String.valueOf(sum[1]));
-        C = Integer.parseInt(String.valueOf(sum[3]));
-
-        if(((C > board.board.length) || (C < 1)) || ((R > board.board.length) || (R < 1))){
-        }
-        else{
             String Str = String.valueOf(sum);
             this.movableList.add(Str);
         }
