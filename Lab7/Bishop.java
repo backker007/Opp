@@ -68,5 +68,5 @@ public class Bishop extends Figure {
             }
         }
         System.out.println(Intdexofcanmove);
-    }
+           }
 }
