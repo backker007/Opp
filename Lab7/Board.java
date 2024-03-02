@@ -8,6 +8,7 @@ public class Board {
         board[0][1] = new Pawn("Pa2", true, 1, 2);
         board[7][1] = new Pawn("Pa2", false, 8, 1);
         board[0][2] = new Bishop("Bi1", true, 1, 3);
+        board[7][2] = new Bishop("Bi1", false, 8, 3);
     }
 
     void Display() {

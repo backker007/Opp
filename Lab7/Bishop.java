@@ -26,23 +26,32 @@ public class Bishop extends Figure {
 
     @Override
     void updateMovableList(Board board) {
-        BishopCanMove(this);
+        BishopCanMove(this,board);
+        int sumR = 0 , sumCmin = 0 ,sumCmax = 0 ;
         this.movableList.clear();
         for (int i = 0; i < Intdexofcanmove.size(); i++) {
             String First = Intdexofcanmove.get(i);
             int row = Integer.parseInt(First.substring(1, 2));
             int col = Integer.parseInt(First.substring(3, 4));
-            if ((row < 1 || row < board.board.length) && (col < 1 || col < board.board.length)) {
-                if ((board.board[row][col] != null) && (board.board[row][col].iswhite == this.iswhite)) {
-                    continue;
-                } else if ((this.CurrentPositionRow != row) && (this.CurrentPositionCol != col)) {
-                    this.movableList.add(First);
-                }
-            }
-        }
-    }
 
-    void BishopCanMove(Bishop bishop) {
+            if ((row < 1 || row < board.board.length  + 1) && (col < 1 || col < board.board.length + 1)) {
+                
+                if (sumR < row) {
+                    sumR = row;   
+                }
+                if (sumCmin < col) {
+                    sumCmin = col;
+                }else{
+                    sumCmax = col;
+                }
+                }
+        }
+        System.out.println(sumR + " min " + sumCmin);
+        System.out.println(sumR + " max " + sumCmax);
+        }
+    
+
+    void BishopCanMove(Bishop bishop , Board brd) {
         Intdexofcanmove.clear();
         for (int i = 1; i < 10; i++) {
             for (int j = 1; j < 10; j++) {
@@ -58,5 +67,6 @@ public class Bishop extends Figure {
                 }
             }
         }
+        System.out.println(Intdexofcanmove);
     }
 }
