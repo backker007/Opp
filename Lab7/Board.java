@@ -6,8 +6,8 @@ public class Board {
     void boardInitiate() {
         board[0][0] = new Pawn("Pa1", true, 1, 1);
         board[0][1] = new Pawn("Pa2", true, 1, 2);
-        board[7][1] = new Pawn("Pa2", false, 8, 1);
         board[0][2] = new Bishop("Bi1", true, 1, 3);
+        board[7][1] = new Pawn("Pa2", false, 8, 2);
         board[7][2] = new Bishop("Bi1", false, 8, 3);
     }
 
@@ -30,7 +30,7 @@ public class Board {
         System.out.print("       1         2         3         4         5         6         7         8       \n\n");
 
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
+            for (int j = 0; j < board[0].length; j++) {
                 if (board[i][j] != null) {
                     board[i][j].updateMovableList(this);
                     System.out.println("Next turn, Figure " + board[i][j].getiswhite(board[i][j].iswhite)
@@ -78,8 +78,7 @@ public class Board {
                 if (board[i][j] == null) {
                     continue;
                 } else if ((board[i][j].Name == Name) && (board[i][j].iswhite == iswhite)) {
-                    board[i][j].MoveFigure(this, targetRow, targetCol);  
-                    board[i][j] = null;                                          
+                    board[i][j].MoveFigure(this, targetRow, targetCol);                                            
                     found = true;
                     break s1;
                 }

@@ -25,8 +25,10 @@ public class Pawn extends Figure {
                 }
             } else {
                 brd.board[targetRow - 1][targetCol - 1] = this;
+                brd.board[this.CurrentPositionRow - 1 ][this.CurrentPositionCol -1 ] = null;
                 brd.board[targetRow - 1][targetCol - 1].CurrentPositionRow = targetRow;
                 brd.board[targetRow - 1][targetCol - 1].CurrentPositionCol = targetCol;
+                
             }
         } else {
             System.out.println("Command : Move figure is not move !!!");
