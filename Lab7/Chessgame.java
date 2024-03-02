@@ -8,6 +8,9 @@ public class Chessgame {
         brd.Display();
         brd.FreeMove("Bi1",false,5,7);
         brd.Display();
+        brd.Display();
+        brd.Display();
+        brd.Display();
       
     }
     

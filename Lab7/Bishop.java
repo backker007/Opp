@@ -49,7 +49,6 @@ public class Bishop extends Figure {
                 i++;
                 j++;
             }
-
         }
         i = this.CurrentPositionRow;
         j = this.CurrentPositionCol;
@@ -70,33 +69,35 @@ public class Bishop extends Figure {
         }
         i = this.CurrentPositionRow;
         j = this.CurrentPositionCol;
-
-        System.out.println(i);
-        System.out.println(j);
         TR: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
             if (brd.board[i][j] != null) {
                 break TR;
             }
-            i++;
-            j--;
+            i--;
+            j++;
             String str = "[" + i + "," + j + "]";
             this.Intdexofcanmove.add(str);
         }
         i = this.CurrentPositionRow;
         j = this.CurrentPositionCol;
-        // TL: while (i > 1 && j > 1) {
-        //     if (brd.board[i][j] != null) {
-        //         break TL;
-        //     } else {
-        //         i--;
-        //         j--;
-        //         System.out.println(i);
-        //         System.out.println(j);
-        //         String str = "[" + i + "," + j + "]";
-        //         this.Intdexofcanmove.add(str);
-        //     }
-        // }
-
+        TL: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
+            if (brd.board[i][j] != null) {
+                if (this.CurrentPositionRow - 1 == i && this.CurrentPositionCol - 1 == j) {
+                    i--;
+                    j--;
+                    String str = "[" + (i) + "," + (j) + "]";
+                    this.Intdexofcanmove.add(str);
+                    continue;
+                } else {
+                    break TL;
+                }
+            } else {
+                i--;
+                j--;
+                String str = "[" + (i) + "," + (j) + "]";
+                this.Intdexofcanmove.add(str);
+            }
+        }
         System.out.println(Intdexofcanmove);
     }
 }
