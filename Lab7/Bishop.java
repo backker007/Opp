@@ -1,16 +1,14 @@
 package Lab7;
 
-
 import java.util.ArrayList;
 
 public class Bishop extends Figure {
 
-    ArrayList<String> Intdexofcanmove = new ArrayList<>() ;
-    
+    ArrayList<String> Intdexofcanmove = new ArrayList<>();
 
     public Bishop(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
         super(Name, iswhite, CurrentPositionRow, CurrentPositionCol);
-        //TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -26,37 +24,80 @@ public class Bishop extends Figure {
 
     @Override
     void updateMovableList(Board board) {
-        BishopCanMove(this);
+        BishopCanMove(this, board);
         this.movableList.clear();
-        for (int i = 0; i < Intdexofcanmove.size(); i++) {
-            String First = Intdexofcanmove.get(i);
-            int row = Integer.parseInt(First.substring(1, 2));
-            int col = Integer.parseInt(First.substring(3, 4));
-            if ((row < 1 || row < board.board.length) && (col < 1 || col < board.board.length)) {
-                if ((board.board[row][col] != null) && (board.board[row][col].iswhite == this.iswhite)) {
-                    continue;
-                } else if ((this.CurrentPositionRow != row) && (this.CurrentPositionCol != col)) {
-                    this.movableList.add(First);
-                }
-            }
-        }
+
     }
 
-    void BishopCanMove(Bishop bishop) {
+    void BishopCanMove(Bishop bishop, Board brd) {
         Intdexofcanmove.clear();
-        for (int i = 1; i < 10; i++) {
-            for (int j = 1; j < 10; j++) {
-                boolean iscollect = false;
-                int rowDiff = Math.abs(i - this.CurrentPositionRow );
-                int colDiff = Math.abs(j - this.CurrentPositionCol );
-                if (rowDiff == colDiff) {
-                    iscollect = true;
-                }
-                if (iscollect == true) {
-                    String position = "[" + Integer.toString(i) + "," + Integer.toString(j) + "]";
-                    this.Intdexofcanmove.add(position);
-                }
+        // boolean TR = true; // บนขวา
+        // boolean TL = true; // บนขวา
+        // boolean BR = true; // ล่างขวา
+        // boolean BL = true; // ล่างซ้าย
+        int i = this.CurrentPositionRow;
+        int j = this.CurrentPositionCol;
+        BR: while ((i < brd.board.length) && (j < brd.board.length)) {
+            if (brd.board[i][j] != null) {
+                String str = "[" + (i + 1) + "," + (j + 1) + "]";
+                this.Intdexofcanmove.add(str);
+                break BR;
+            }
+            {
+                String str = "[" + (i + 1) + "," + (j + 1) + "]";
+                this.Intdexofcanmove.add(str);
+                i++;
+                j++;
             }
         }
+        i = this.CurrentPositionRow;
+        j = this.CurrentPositionCol;
+        BL: while (i > 0 && i < brd.board.length && j < brd.board.length && j > 1) {
+            if (brd.board[i][j] != null) {
+                if (brd.board[i][j].iswhite != this.iswhite) {
+                    String str = "[" + (i + 1) + "," + (j + 1) + "]";
+                    this.Intdexofcanmove.add(str);
+                } else {
+                    break BL;
+                }
+            } else {
+                i++;
+                j--;
+                String str = "[" + i + "," + j + "]";
+                this.Intdexofcanmove.add(str);
+            }
+        }
+        i = this.CurrentPositionRow;
+        j = this.CurrentPositionCol;
+        TR: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
+            if (brd.board[i][j] != null) {
+                break TR;
+            }
+            i--;
+            j++;
+            String str = "[" + i + "," + j + "]";
+            this.Intdexofcanmove.add(str);
+        }
+        i = this.CurrentPositionRow;
+        j = this.CurrentPositionCol;
+        TL: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
+            if (brd.board[i][j] != null) {
+                if (this.CurrentPositionRow - 1 == i && this.CurrentPositionCol - 1 == j) {
+                    i--;
+                    j--;
+                    String str = "[" + (i) + "," + (j) + "]";
+                    this.Intdexofcanmove.add(str);
+                    continue;
+                } else {
+                    break TL;
+                }
+            } else {
+                i--;
+                j--;
+                String str = "[" + (i) + "," + (j) + "]";
+                this.Intdexofcanmove.add(str);
+            }
+        }
+        System.out.println(Intdexofcanmove);
     }
 }

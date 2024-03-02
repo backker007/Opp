@@ -6,18 +6,12 @@ public class Chessgame {
         Board brd = new Board();
         brd.boardInitiate();
         brd.Display();
-        brd.FreeMove("Pa1",true,6,2);
+        brd.FreeMove("Bi1",false,5,7);
         brd.Display();
-        brd.MoveFigure("Pa1", true , 7, 2);
         brd.Display();
-        brd.MoveFigure("Pa1", true , 8, 2);
         brd.Display();
-        // brd.FreeMove("Pawn2",true,6,3);
-        // brd.Display();
-        // brd.FreeMove("Pawn2",true,6,2);
-        // brd.Display();
-        // brd.FreeMove("Pawn2", false, 6, 2);
-        // brd.Display();
+        brd.Display();
+      
     }
     
 }
