@@ -38,65 +38,62 @@ public class Bishop extends Figure {
         int i = this.CurrentPositionRow;
         int j = this.CurrentPositionCol;
         BR: while ((i < brd.board.length) && (j < brd.board.length)) {
-            if (brd.board[i][j] != null) {
-                String str = "[" + (i + 1) + "," + (j + 1) + "]";
-                this.Intdexofcanmove.add(str);
-                break BR;
-            }
-            {
-                String str = "[" + (i + 1) + "," + (j + 1) + "]";
-                this.Intdexofcanmove.add(str);
-                i++;
-                j++;
-            }
+        if (brd.board[i][j] != null) {
+        String str = "[" + (i + 1) + "," + (j + 1) + "]";
+        this.Intdexofcanmove.add(str);
+        break BR;
+        }
+        {
+        String str = "[" + (i + 1) + "," + (j + 1) + "]";
+        this.Intdexofcanmove.add(str);
+        i++;
+        j++;
+        }
         }
         i = this.CurrentPositionRow;
-        j = this.CurrentPositionCol;
-        BL: while (i > 0 && i < brd.board.length && j < brd.board.length && j > 1) {
+        j = this.CurrentPositionCol - 2;
+        BL: while (i >= 0 && i < brd.board.length && j < brd.board.length && j >= 0) {
             if (brd.board[i][j] != null) {
-                if (brd.board[i][j].iswhite != this.iswhite) {
-                    String str = "[" + (i + 1) + "," + (j + 1) + "]";
+                if (brd.board[i][j].iswhite == this.iswhite) {
+                    String str = "[" + (i+1) + "," + (j + 1) + "]";
                     this.Intdexofcanmove.add(str);
-                } else {
-                    break BL;
                 }
+                break BL;
             } else {
                 i++;
                 j--;
-                String str = "[" + i + "," + j + "]";
+                String str = "[" + i + "," + (j + 2) + "]";
                 this.Intdexofcanmove.add(str);
             }
         }
         i = this.CurrentPositionRow;
         j = this.CurrentPositionCol;
         TR: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
-            if (brd.board[i][j] != null) {
-                break TR;
-            }
-            i--;
-            j++;
-            String str = "[" + i + "," + j + "]";
-            this.Intdexofcanmove.add(str);
+        if (brd.board[i][j] != null) {
+        break TR;
         }
-        i = this.CurrentPositionRow;
-        j = this.CurrentPositionCol;
-        TL: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
-            if (brd.board[i][j] != null) {
-                if (this.CurrentPositionRow - 1 == i && this.CurrentPositionCol - 1 == j) {
-                    i--;
-                    j--;
-                    String str = "[" + (i) + "," + (j) + "]";
-                    this.Intdexofcanmove.add(str);
-                    continue;
-                } else {
-                    break TL;
-                }
-            } else {
-                i--;
-                j--;
-                String str = "[" + (i) + "," + (j) + "]";
-                this.Intdexofcanmove.add(str);
-            }
+        i--;
+        j++;
+        String str = "[" + i + "," + j + "]";
+        this.Intdexofcanmove.add(str);
+        }
+        i = this.CurrentPositionRow - 2;
+        j = this.CurrentPositionCol - 2;
+        boolean istrue = true;
+        TL: while (i > 0 && i < brd.board.length && j < brd.board.length && j > 0) {
+        if (istrue) {
+        String str = "[" + (i+1) + "," + (j+1) + "]";
+        this.Intdexofcanmove.add(str);
+        istrue = false;
+        }
+        if (brd.board[i][j] != null) {
+        break TL;
+        }else{
+        String str = "[" + i + "," + j + "]";
+        this.Intdexofcanmove.add(str);
+        }
+        i--;
+        j--;
         }
         System.out.println(Intdexofcanmove);
     }
