@@ -38,16 +38,6 @@ public class Bishop extends Figure {
                 System.out.println("Command : Can not move it!!!");
             }
         }
-        for (int i = 0; i < brd.board.length; i++) {
-            for (int j = 0; j < brd.board.length; j++) {
-                if (brd.board[i][j] == null) {
-                    continue;
-                } else if (brd.board[i][j].Name == "Bi1") {
-                    System.err.println(i + " " + j);
-                }
-            }
-
-        }
     }
 
     @Override
