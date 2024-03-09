@@ -96,16 +96,22 @@ public class Bishop extends Figure {
                 this.Intdexofcanmove.add(str);
             }
         }
-        i = this.CurrentPositionRow;
-        j = this.CurrentPositionCol;
-        TR: while (i > 1 && i < brd.board.length && j < brd.board.length && j > 1) {
+        i = this.CurrentPositionRow-1;
+        j = this.CurrentPositionCol-1;
+        TR: while ((i > 1 && i < brd.board.length)  && (j < brd.board.length && j > 1)) {
             if (brd.board[i][j] != null) {
+                if (this.CurrentPositionRow-1 == i && this.CurrentPositionCol-1 == j) {
+                    i--;
+                    j++;
+                    continue; 
+                }else{
+                }
                 break TR;
             }
+            String str = "[" + (i+1) + "," + (j+1) + "]";
+            this.Intdexofcanmove.add(str);
             i--;
             j++;
-            String str = "[" + i + "," + j + "]";
-            this.Intdexofcanmove.add(str);
         }
         i = this.CurrentPositionRow - 2;
         j = this.CurrentPositionCol - 2;
