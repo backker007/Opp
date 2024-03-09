@@ -1,6 +1,15 @@
 package Lab7;
 
+import java.util.*;
+
 public class Pawn extends Figure {
+
+    private boolean isFirstturn = true;
+    Scanner inputStr = new Scanner(System.in);
+    boolean iscannewfigure = false;
+    int boardrow, boardcol;
+    String ChangeFigure;
+    String Newname;
 
     public Pawn(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
         super(Name, iswhite, CurrentPositionRow, CurrentPositionCol);
@@ -9,62 +18,183 @@ public class Pawn extends Figure {
 
     @Override
     void MoveFigure(Board brd, int targetRow, int targetCol) {
-
-        String sum;
-        sum = this.movableList.get(0);
-        int IndexPositionsRow = Integer.valueOf(sum.substring(1, 2));
-        int IndexPositionsCol = Integer.valueOf(sum.substring(3, 4));
-        if ((IndexPositionsRow == targetRow) && (IndexPositionsCol == targetCol)) {
-            if ((brd.board[targetRow - 1][targetCol - 1] != null)
-                    && (this.iswhite == brd.board[targetRow - 1][targetCol - 1].iswhite)) {
-                System.out.printf("The destination is being occupied by the same-side figure %s , Command abort!!!\n",
-                        this.Name);
-            } else if ((1 < targetRow) && (targetRow > 9)) {
-                if ((targetCol < 1) && (targetRow > 9)) {
-                    System.out.println("The speicified destination is out of range , Command abort!!! \n");
-                }
+        boolean iscanmove = false;
+        for (int i = 0; i < this.movableList.size(); i++) {
+            String First = this.movableList.get(i);
+            int row = Integer.parseInt(First.substring(1, 2));
+            int col = Integer.parseInt(First.substring(3, 4));
+            if (targetRow == row && targetCol == col) {
+                iscanmove = true;
+                break;
             } else {
-                brd.board[targetRow - 1][targetCol - 1] = this;
-                brd.board[this.CurrentPositionRow - 1 ][this.CurrentPositionCol -1 ] = null;
-                brd.board[targetRow - 1][targetCol - 1].CurrentPositionRow = targetRow;
-                brd.board[targetRow - 1][targetCol - 1].CurrentPositionCol = targetCol;
-                
+                continue;
+            }
+        }
+        if (iscanmove == true) {
+            brd.board[targetRow - 1][targetCol - 1] = this;
+            brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1] = null;
+            brd.board[targetRow - 1][targetCol - 1].CurrentPositionRow = targetRow;
+            brd.board[targetRow - 1][targetCol - 1].CurrentPositionCol = targetCol;
+            this.isFirstturn = false;
+        } else {
+            System.out.println("Command : Can not move it!!!");
+        }
+        if (brd.board[targetRow - 1][targetCol - 1].iswhite == true) {
+            if (targetRow == 8) {
+                ChangeFigure(brd);
+                brd.board[targetRow-1][targetCol-1] = null;
             }
         } else {
-            System.out.println("Command : Move figure is not move !!!");
+            if (targetRow == 1) {
+                ChangeFigure(brd);
+                brd.board[targetRow-1][targetCol-1] = null;
+            }
         }
+    }
+
+    void ChangeFigure(Board brd) {
+         S1 : do {
+        System.out.println("Change Pawn To Queen Rook Bishop Knight");
+        this.ChangeFigure = inputStr.nextLine();
+        System.out.println(this.ChangeFigure);
+        if (ChangeFigure.equals("Queen")) {
+            System.out.println("Nummer of Queen : Do not repeat existing ones.");
+            this.Newname = inputStr.nextLine();
+            generateinfotmation(brd);
+            brd.board[boardrow - 1][boardcol - 1] = new Figure(this.ChangeFigure.substring(0, 2) + this.Newname,
+                    this.iswhite, boardrow, boardcol);
+            break S1;
+        } else if (ChangeFigure.equals("Rook")) {
+            System.out.println("Nummer of Rook : Do not repeat existing ones.");
+            this.Newname = inputStr.nextLine();
+            generateinfotmation(brd);
+            brd.board[boardrow - 1][boardcol - 1] = new Figure(this.ChangeFigure.substring(0, 2) + this.Newname,
+            this.iswhite, boardrow,
+            boardcol);
+            break S1;
+        } else if (ChangeFigure.equals("Bishop")) {
+            System.out.println("Nummer of Bishop : Do not repeat existing ones.");
+            this.Newname = inputStr.nextLine();
+            generateinfotmation(brd);
+            brd.board[boardrow - 1][boardcol - 1] = new Bishop(this.ChangeFigure.substring(0, 2) + this.Newname,
+            this.iswhite, boardrow,
+            boardcol);
+            break S1;
+        } else if (ChangeFigure.equals("Knight")) {
+            System.out.println("Nummer of Knight : Do not repeat existing ones.");
+            this.Newname = inputStr.nextLine();
+            generateinfotmation(brd);
+            brd.board[boardrow - 1][boardcol - 1] = new Figure(this.ChangeFigure.substring(0, 2) + this.Newname,
+            this.iswhite, boardrow,
+            boardcol);
+            break S1;
+        } else {
+            System.out.println("Please print only in accordance with such information.>>");
+        }
+
+    }while(true);
+}
+
+
+
+    void generateinfotmation(Board brd) {
+        do {
+            System.out.println("Input Location in board Row : Colume");
+            System.out.println("Row");
+            this.boardrow = inputStr.nextInt();
+            System.out.println("Colume");
+            this.boardcol = inputStr.nextInt();
+            if ((boardrow >= 1 && boardrow <= 8) && (boardcol >= 1 && boardcol <= 8)) {
+                if (brd.board[this.boardrow - 1][this.boardcol - 1] == null) {
+                    this.iscannewfigure = true;
+                }
+            } else {
+                System.out.println("Please select a vacant board position...");
+            }
+        } while (this.iscannewfigure == false);
 
     }
 
     @Override
     void FreeMove(Board brd, int targetPositionRow, int targetPositionCol) {
+        isFirstturn = false;
+        if (this.iswhite == true) {
+            if (targetPositionRow == 8) {
+                ChangeFigure(brd);
+            }
+        } else {
+            if (targetPositionRow == 1) {
+                ChangeFigure(brd);
+            }
+        }
         super.FreeMove(brd, targetPositionRow, targetPositionCol);
     }
 
     @Override
     void updateMovableList(Board board) {
-
         this.movableList.clear();
-        char sum[] = { '[', 'i', ',', 'j', ']' };
-        if (this.Name.substring(0, 2).endsWith("Pa")) {
+
+        if (this.isFirstturn == true) {
             if (this.iswhite == true) {
-                sum[1] = ((char) (this.CurrentPositionRow + 49));
-                sum[3] = ((char) (this.CurrentPositionCol + 48));
+                for (int i = 1; i <= 2; i++) {
+                    if (((this.CurrentPositionRow - 1) + i) < board.board.length) {
+                        if (board.board[(this.CurrentPositionRow - 1) + i][this.CurrentPositionCol - 1] != null
+                                && board.board[(this.CurrentPositionRow - 1) + i][this.CurrentPositionCol
+                                        - 1].iswhite != this.iswhite) {
+                            String str = "[" + (this.CurrentPositionRow + i) + "," + this.CurrentPositionCol + "]";
+                            this.movableList.add(str);
+                        }
+                        if (board.board[(this.CurrentPositionRow - 1) + i][this.CurrentPositionCol - 1] == null) {
+                            String str = "[" + (this.CurrentPositionRow + i) + "," + this.CurrentPositionCol + "]";
+                            this.movableList.add(str);
+                        }
+                    } else {
+                        continue;
+                    }
+                }
             } else {
-
-                sum[1] = ((char) (this.CurrentPositionRow + 47));
-                sum[3] = ((char) (this.CurrentPositionCol + 48));
+                for (int i = 1; i <= 2; i++) {
+                    if (((this.CurrentPositionRow - 1) - i) >= 1) {
+                        if (board.board[(this.CurrentPositionRow - 1) - i][this.CurrentPositionCol - 1] != null
+                                && board.board[(this.CurrentPositionRow - 1) - i][this.CurrentPositionCol
+                                        - 1].iswhite != this.iswhite) {
+                            String str = "[" + (this.CurrentPositionRow - i) + "," + this.CurrentPositionCol + "]";
+                            this.movableList.add(str);
+                        } else if (board.board[this.CurrentPositionRow - 1 - i][this.CurrentPositionCol - 1] == null) {
+                            String str = "[" + (this.CurrentPositionRow - i) + "," + this.CurrentPositionCol + "]";
+                            this.movableList.add(str);
+                        }
+                    } else {
+                        continue;
+                    }
+                }
             }
-        }
-        int R = Integer.parseInt(String.valueOf(sum[1]));
-        int C = Integer.parseInt(String.valueOf(sum[3]));
-
-        if(((C > board.board.length) || (C < 1)) || ((R > board.board.length) || (R < 1))){
-        }
-        else{
-            String str = "[" + sum[1] + "," + sum[3] + "]";
-            this.movableList.add(str);
+        } else {
+            if (this.iswhite == true) {
+                if (((this.CurrentPositionRow - 1) + 1) < board.board.length) {
+                    if (board.board[(this.CurrentPositionRow - 1) + 1][this.CurrentPositionCol - 1] == null) {
+                        String str = "[" + (this.CurrentPositionRow + 1) + "," + this.CurrentPositionCol + "]";
+                        this.movableList.add(str);
+                    } else if (board.board[(this.CurrentPositionRow - 1) + 1][this.CurrentPositionCol - 1] != null
+                            && (board.board[(this.CurrentPositionRow - 1) + 1][this.CurrentPositionCol
+                                    - 1].iswhite != this.iswhite)) {
+                        String str = "[" + (this.CurrentPositionRow + 1) + "," + this.CurrentPositionCol + "]";
+                        this.movableList.add(str);
+                    }
+                }
+            } else {
+                if (((this.CurrentPositionRow - 1) - 1) >= 1) {
+                    if (board.board[(this.CurrentPositionRow - 1) - 1][this.CurrentPositionCol] == null) {
+                        String str = "[" + (this.CurrentPositionRow - 1) + "," + this.CurrentPositionCol + "]";
+                        this.movableList.add(str);
+                    } else if (board.board[(this.CurrentPositionRow - 1) + 1][this.CurrentPositionCol - 1] != null
+                            && (board.board[(this.CurrentPositionRow - 1) + 1][this.CurrentPositionCol
+                                    - 1].iswhite != this.iswhite)) {
+                        String str = "[" + (this.CurrentPositionRow - 1) + "," + this.CurrentPositionCol + "]";
+                        this.movableList.add(str);
+                    }
+                }
+            }
         }
     }
 }
-

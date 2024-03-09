@@ -9,7 +9,7 @@ public class Figure {
     int CurrentPositionRow = 0;
     int CurrentPositionCol = 0;
     ArrayList<String> movableList = new ArrayList<>();
-
+ 
     public Figure(String Name, boolean iswhite, int CurrentPositionRow, int CurrentPositionCol) {
         this.Name = Name;
         this.iswhite = iswhite;
@@ -38,8 +38,9 @@ public class Figure {
             System.out.printf("The destination is being occupied by the same-side figure %s , Command abort!!!\n",
                     this.Name);
         } else if ((brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1].CurrentPositionRow == targetPositionRow)
-                && (brd.board[CurrentPositionRow - 1][CurrentPositionCol    - 1].CurrentPositionCol == targetPositionCol)) {
-                    System.out.println("Command : Can not move it!!!");
+                && (brd.board[CurrentPositionRow - 1][CurrentPositionCol
+                        - 1].CurrentPositionCol == targetPositionCol)) {
+            System.out.println("Command : Can not move it!!!");
         }
 
         else {
