@@ -4,11 +4,11 @@ public class Board {
     Figure[][] board = new Figure[8][8];
 
     void boardInitiate() {
-        board[0][0] = new Pawn("Pa1", true, 1, 1);
-        board[0][1] = new Pawn("Pa2", true, 1, 2);
-        board[3][2] = new Bishop("Bi1", true, 4, 3);
-        board[7][1] = new Pawn("Pa2", false, 8, 2);
-        board[3][6] = new Bishop("Bi1", false, 4, 7);
+        board[1][0] = new Pawn("Pa1", true, 2, 1);
+        board[1][1] = new Pawn("Pa2", true, 2, 2);
+        board[0][2] = new Bishop("Bi1", true, 1, 3);
+        board[6][1] = new Pawn("Pa2", false, 7, 2);
+        board[7][6] = new Bishop("Bi1", false, 8, 7);
     }
 
     void Display() {
