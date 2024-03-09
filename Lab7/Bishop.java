@@ -26,18 +26,17 @@ public class Bishop extends Figure {
             int col = Integer.parseInt(First.substring(3, 4));
             if (targetRow == row && targetCol == col) {
                 iscanmove = true;
-                break;
             } else {
                 continue;
             }
-        }
-        if (iscanmove == true) {
-            brd.board[targetRow - 1][targetCol - 1] = this;
-            brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1] = null;
-            brd.board[targetRow - 1][targetCol - 1].CurrentPositionRow = targetRow;
-            brd.board[targetRow - 1][targetCol - 1].CurrentPositionCol = targetCol;
-        } else {
-            System.out.println("Command : Can not move it!!!");
+            if (iscanmove == true) {
+                brd.board[targetRow - 1][targetCol - 1] = this;
+                brd.board[CurrentPositionRow - 1][CurrentPositionCol - 1] = null;
+                brd.board[targetRow - 1][targetCol - 1].CurrentPositionRow = targetRow;
+                brd.board[targetRow - 1][targetCol - 1].CurrentPositionCol = targetCol;
+            } else {
+                System.out.println("Command : Can not move it!!!");
+            }
         }
     }
 
