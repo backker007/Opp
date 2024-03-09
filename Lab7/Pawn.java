@@ -42,12 +42,10 @@ public class Pawn extends Figure {
         if (brd.board[targetRow - 1][targetCol - 1].iswhite == true) {
             if (targetRow == 8) {
                 ChangeFigure(brd);
-                brd.board[targetRow-1][targetCol-1] = null;
             }
         } else {
             if (targetRow == 1) {
                 ChangeFigure(brd);
-                brd.board[targetRow-1][targetCol-1] = null;
             }
         }
     }
@@ -93,6 +91,7 @@ public class Pawn extends Figure {
         }
 
     }while(true);
+    brd.board[this.CurrentPositionRow-1][this.CurrentPositionCol-1] = null;
 }
 
 
