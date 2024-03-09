@@ -26,6 +26,7 @@ public class Bishop extends Figure {
             int col = Integer.parseInt(First.substring(3, 4));
             if (targetRow == row && targetCol == col) {
                 iscanmove = true;
+                break;
             } else {
                 continue;
             }
