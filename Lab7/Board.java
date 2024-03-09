@@ -14,7 +14,7 @@ public class Board {
         board[6][1] = new Pawn("Pa2", false, 7, 2);
         board[6][2] = new Pawn("Pa3", false, 7, 3);
         board[6][3] = new Pawn("Pa4", false, 7, 4);
-        board[6][4] = new Pawn("Pa5", false, 7, 5);
+        // board[6][4] = new Pawn("Pa5", false, 7, 5);
         board[7][5] = new Bishop("Bi1", false, 8, 6);
     }
 
