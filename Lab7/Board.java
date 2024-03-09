@@ -6,10 +6,18 @@ public class Board {
     void boardInitiate() {
         board[1][0] = new Pawn("Pa1", true, 2, 1);
         board[1][1] = new Pawn("Pa2", true, 2, 2);
+        board[1][4] = new Pawn("Pa3", true, 2, 5);
+        board[1][5] = new Pawn("Pa4", true, 2, 6);
+        board[1][6] = new Pawn("Pa5", true, 2, 7);
         board[0][2] = new Bishop("Bi1", true, 1, 3);
+        board[6][0] = new Pawn("Pa1", false, 7, 1);
         board[6][1] = new Pawn("Pa2", false, 7, 2);
-        board[7][6] = new Bishop("Bi1", false, 8, 7);
+        board[6][2] = new Pawn("Pa3", false, 7, 3);
+        board[6][3] = new Pawn("Pa4", false, 7, 4);
+        board[6][4] = new Pawn("Pa5", false, 7, 5);
+        board[7][5] = new Bishop("Bi1", false, 8, 6);
     }
+
 
     void Display() {
         System.out.print("\n       1         2         3         4         5         6         7         8       \n");
