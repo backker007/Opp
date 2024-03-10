@@ -24,7 +24,7 @@ public class Chessgame {
         brd.Display();
         brd.MoveFigure("Pa1", true, 7, 1);
         brd.Display();
-        brd.FreeMove("Pa1", true, 8, 1);
+        brd.MoveFigure("Pa1", true, 8, 1);
         brd.Display();
        
     }
